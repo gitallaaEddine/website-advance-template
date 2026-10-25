@@ -1,0 +1,26 @@
+{
+	"$schema": "https://aka.ms/codetour-schema",
+	"title": "Navigation System & Dropdowns",
+	"steps": [
+		{
+			"file": "src/data/navData.json",
+			"description": "`navData.json` controls your site's navigation. Each entry has:\n\n- **`key`** — internal ID (also used for route translation elsewhere)\n- **`urls`** — the translated path per locale: `{ \"en\": \"/about\", \"fr\": \"/a-propos\" }`\n- **`label`** — the nav text per locale: `{ \"en\": \"About\", \"fr\": \"À propos\" }`\n- **`children`** — optional sub-entries (same shape) for dropdown menus\n\nAdd, remove, or edit entries here to change the site's navigation — and the same `urls` data automatically makes that page locale-aware everywhere else in the site.",
+			"line": 2
+		},
+		{
+			"file": "src/components/Header/DynamicHeader.astro",
+			"description": "`<DynamicHeader />` loops through `navData.json` and renders each entry — a dropdown if it has children, a plain link otherwise. The current page gets highlighted automatically via URL matching.",
+			"line": 45
+		},
+		{
+			"file": "src/components/Settings/Settings.astro",
+			"description": "`Settings.astro` renders the language switcher and dark mode toggle side by side — swap either by changing its import (options live in `src/features/darkmode/` and `src/features/i18n/LanguageSwitch/`). It's used twice in `DynamicHeader` (mobile panel + desktop bar), so one edit updates both.",
+			"line": 1
+		},
+		{
+			"file": "src/assets/js/nav.js",
+			"description": "Adds the nav's interactivity: mobile menu toggle, dropdown keyboard navigation, and focus management. Wrapped in `astro:page-load` so it keeps working after Astro's View Transitions. Paste your CodeStitch JS here.",
+			"line": 1
+		}
+	]
+}

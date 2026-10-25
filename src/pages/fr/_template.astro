@@ -1,0 +1,26 @@
+---
+/**
+ * _template.astro
+ *
+ * Use this file as a starting point for new French pages.
+ * Duplicate it, rename it, and add your content.
+ *
+ * To add this page to navigation:
+ * 1. Add an entry to src/data/navData.json (key, urls, and label per locale)
+ * 2. If i18n is enabled, register the slug in src/features/i18n/routeTranslations.ts
+ *
+ * Tip: `npm run create-page -- "Page Name"` automates both steps above.
+ */
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getSiteContext } from "@js/getSiteContext";
+
+const { content } = await getSiteContext(Astro.url);
+---
+
+<BaseLayout title="Page Title" description="Meta description for the page">
+	<!-- ============================================ -->
+	<!--            Add Your Sections Here            -->
+	<!-- ============================================ -->
+
+	<!-- Example: <SomeSectionComponent /> -->
+</BaseLayout>

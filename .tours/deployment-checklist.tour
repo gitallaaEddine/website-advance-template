@@ -1,0 +1,41 @@
+{
+	"$schema": "https://aka.ms/codetour-schema",
+	"title": "Deployment Checklist",
+	"steps": [
+		{
+			"file": "astro.config.ts",
+			"description": "Update the **site** URL to your actual production domain (e.g., `https://yourdomain.com`). This is critical for generating correct sitemaps, hreflang alternate links, canonical URLs, and Open Graph image URLs.",
+			"line": 7
+		},
+		{
+			"file": "src/data/client.ts",
+			"description": "Fill in all your business information here — **BUSINESS** details populate the footer, contact page, and LocalBusiness JSON-LD schema.",
+			"line": 1
+		},
+		{
+			"file": "src/data/siteConfig.ts",
+			"description": "Fill in your site/SEO config: **SITE.url** must match your production domain exactly, and **OG.image** is the default social share fallback — replace `public/assets/social.jpg` with a real 1200×630 image.",
+			"line": 1
+		},
+		{
+			"file": "src/data/navData.json",
+			"description": "Double-check every nav entry's `urls` object has the right translated path per locale (e.g. `\"/about\"` → `\"/a-propos\"`) — this is what generates every translated link on the site. Add new pages here too.",
+			"line": 1
+		},
+		{
+			"file": "public/robots.txt",
+			"description": "Update the sitemap URL to match your production domain. Change the URL to `https://yourdomain.com/sitemap-index.xml`. This helps search engines discover and index all your pages including hreflang alternate versions.",
+			"line": 4
+		},
+		{
+			"file": "src/components/Meta/Meta.astro",
+			"description": "Replace the default favicons with your own — use [RealFaviconGenerator.net](https://realfavicongenerator.net/) and drop the files into `/public/assets/favicons/`. Then check your live page source for `<link rel=\"alternate\" hreflang=\"...\">` to confirm the translated-page links are correct.",
+			"line": 145
+		},
+		{
+			"file": "package.json",
+			"description": "Before launch: run `npm run build` to catch errors, then `node scripts/remove-demo.js` (and `remove-dark-mode.js` if you don't need it) to strip placeholder content. Re-run `npm run dev` afterward to confirm both `/` and `/fr/` still load fine.",
+			"line": 8
+		}
+	]
+}

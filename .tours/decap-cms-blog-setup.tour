@@ -1,0 +1,41 @@
+{
+	"$schema": "https://aka.ms/codetour-schema",
+	"title": "Blog System: Content Collections & Decap CMS",
+	"steps": [
+		{
+			"file": "src/content.config.ts",
+			"description": "The blog collection is defined here: a glob loader scans every `.md` file under `src/content/blog/` (all locale subfolders), and a zod schema validates frontmatter at build time. `mappingKey` is the i18n-specific field — it links a post to its translation in another locale.",
+			"line": 8
+		},
+		{
+			"file": "public/admin/config.yml",
+			"description": "The Decap CMS config. Before your CMS works, replace the placeholder `repo` and the `auth_endpoint`/`auth_token_endpoint` URLs with your own from [DecapBridge](https://decapbridge.com). `media_folder` points uploads to `src/assets/images/blog` so Astro can optimize them.",
+			"line": 3
+		},
+		{
+			"file": "src/content/blog/en/first-post-in-english.md",
+			"description": "English posts live in `src/content/blog/en/`. `mappingKey: \"post-1\"` connects this post to its French equivalent — otherwise the two files are completely independent. `image` points to an asset in `src/assets/images/blog/`, which Astro optimizes automatically.",
+			"line": 1
+		},
+		{
+			"file": "src/content/blog/fr/premier-article-en-francais.md",
+			"description": "French posts live in `src/content/blog/fr/`. This one shares `mappingKey: \"post-1\"` with `en/first-post-in-english.md`, so switching to French from that post takes readers straight to this one instead of the homepage.",
+			"line": 1
+		},
+		{
+			"file": "src/pages/blog/[...page].astro",
+			"description": "The English blog listing page calls `getBlogPosts('en')` to get only English posts, then paginates them across `/blog/`, `/blog/2/`, etc. The French version at `src/pages/fr/blog/[...page].astro` does the same with `getBlogPosts('fr')`.",
+			"line": 14
+		},
+		{
+			"file": "src/pages/blog/[...slug].astro",
+			"description": "Dynamic route for individual blog posts. The French counterpart lives at `src/pages/fr/blog/[...slug].astro`.",
+			"line": 14
+		},
+		{
+			"file": "src/pages/blog/[...slug].astro",
+			"description": "`getBlogPostingSchema()` builds BlogPosting structured data (JSON-LD) for SEO, using the current `locale` for the `inLanguage` field. It's injected into `<head>` via `slot=\"schema\"`, which Meta.astro picks up.",
+			"line": 34
+		}
+	]
+}

@@ -1,0 +1,46 @@
+{
+	"$schema": "https://aka.ms/codetour-schema",
+	"title": "i18n Routing & Translation System",
+	"steps": [
+		{
+			"file": "astro.config.ts",
+			"description": "Astro's i18n routing starts here. **prefixDefaultLocale: false** means English gets clean URLs (`/about/`) while French gets a `/fr/` prefix (`/fr/a-propos/`). To add a third language, add it here, then in `i18nConfig.ts`, `navData.json`, and `src/locales/`.",
+			"line": 8
+		},
+		{
+			"file": "src/features/i18n/i18nConfig.ts",
+			"description": "The single settings file for locales: which ones exist (**locales**), the labels on the language toggle (**languageSwitcherMap**), the region codes used for SEO tags (**localeMap**), and which blog-style collections need translated slugs (**localizedCollections**).",
+			"line": 1
+		},
+		{
+			"file": "src/features/i18n/localeUtils.ts",
+			"description": "A few small helpers: **getLocaleFromUrl()** reads the locale from the current URL, **filterCollectionByLanguage()** keeps only one locale's blog posts, and **toOgLocale()** formats a locale for social-share tags.",
+			"line": 4
+		},
+		{
+			"file": "src/features/i18n/routeTranslations.ts",
+			"description": "This is where `\"about\"` becomes `\"a-propos\"` for links elsewhere in the site — but it's built automatically from `src/data/navData.json`, so you never edit this file by hand.",
+			"line": 29
+		},
+		{
+			"file": "src/features/i18n/routing/getLocalizedPathname.ts",
+			"description": "Powers the language switcher: given the page you're on and a target locale, it works out the equivalent URL in that locale — including translated blog post slugs, not just page routes.",
+			"line": 6
+		},
+		{
+			"file": "src/js/getSiteContext.ts",
+			"description": "The one function most pages call. Give it the current URL and it hands back the locale, the translated text for that locale, and the SEO links for the other languages, all in a single call.",
+			"line": 5
+		},
+		{
+			"file": "src/components/Meta/Meta.astro",
+			"description": "Uses the SEO links from `getSiteContext()` to tell search engines \"this page also exists in French/English at this URL\"",
+			"line": 97
+		},
+		{
+			"file": "src/features/i18n/LanguageSwitch/TwoLocalesSelect.astro",
+			"description": "The EN/FR toggle button in the header. It links each option to the correct translated URL and supports arrow-key navigation for accessibility.",
+			"line": 12
+		}
+	]
+}

@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getSiteContext } from "@js/getSiteContext";
+import Banner from "src/features/demo/Banner.astro";
+import ReviewsComponent from "src/features/demo/Reviews.astro";
+
+import landingImage from "@assets/images/landing.jpg";
+import CTA from "src/features/demo/CTA.astro";
+
+const { content } = await getSiteContext(Astro.url);
+---
+
+<BaseLayout title={content.reviews.landing} description={content.reviews.p}>
+	<!-- ============================================ -->
+	<!--                    LANDING                   -->
+	<!-- ============================================ -->
+
+	<Banner title={content.reviews.landing} image={landingImage} />
+
+	<!-- ============================================ -->
+	<!--                   Reviews                    -->
+	<!-- ============================================ -->
+
+	<ReviewsComponent />
+
+	<CTA />
+</BaseLayout>

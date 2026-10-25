@@ -1,0 +1,36 @@
+{
+	"$schema": "https://aka.ms/codetour-schema",
+	"title": "Component Composition - Using & Swapping Components",
+	"steps": [
+		{
+			"file": "src/pages/index.astro",
+			"description": "The homepage is just a list of component imports. Each one is self-contained with its own content and styling. You can also paste CodeStitch stitches directly into any .astro file if you'd rather not use components.",
+			"line": 20
+		},
+		{
+			"file": "src/features/demo/Hero.astro",
+			"description": "A **CodeStitch component** — a full UI section with its own layout and styles. Its text comes from `getSiteContext()`, so English and French are both handled automatically. Customize it by editing the HTML, updating `src/locales/`, or swapping in a different component.",
+			"line": 1
+		},
+		{
+			"file": "src/features/demo/Hero.astro",
+			"description": "## Frontmatter\n\nThe section between the `---` fences at the top is where you import things and write server-side code. Here it calls `getSiteContext(Astro.url)` to get the translated `content` for the current locale — every string in the HTML below reads from `content.home.hero.*`.",
+			"line": 12
+		},
+		{
+			"file": "src/features/demo/Hero.astro",
+			"description": "## HTML Template\n\nAfter the frontmatter comes the HTML. Use `{ }` for JS expressions, e.g. `{content.home.hero.title[1]}`. Since text comes from `content` instead of being hardcoded, adding a new language never requires editing this section — only a new file under `src/locales/<locale>/`.",
+			"line": 16
+		},
+		{
+			"file": "src/features/demo/Hero.astro",
+			"description": "## Styles\n\n`<style lang=\"less\">` is where the CodeStitch styles go, unmodified — scoped to this component automatically, with LESS nesting/variables enabled. Dark mode overrides live at the bottom via `body.dark-mode` selectors.",
+			"line": 50
+		},
+		{
+			"file": "src/pages/index.astro",
+			"description": "Feature components like this one are imported by their plain path (`src/features/demo/Hero.astro`) rather than an alias. To add a new section: import your component here and drop it into the template — it'll pick up the page's locale automatically.",
+			"line": 7
+		}
+	]
+}
